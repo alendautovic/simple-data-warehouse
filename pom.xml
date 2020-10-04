@@ -8,10 +8,10 @@
 		<version>2.3.4.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.github</groupId>
-	<artifactId>alendautovic</artifactId>
+	<groupId>com.github.alendautovic</groupId>
+	<artifactId>simple-data-warehouse</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>simple-data-warehouse</name>
+	<name>Simple Data Warehouse</name>
 	<description>A simple backend application that exposes data - extracted from a csv file - via an API.</description>
 
 	<properties>
