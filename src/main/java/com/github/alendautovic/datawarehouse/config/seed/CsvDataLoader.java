@@ -6,12 +6,11 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -43,8 +42,10 @@ public class CsvDataLoader implements ApplicationRunner {
             return;
         }
 
-        File file = new ClassPathResource("data.csv").getFile();
-        Reader reader = new FileReader(file);
+        InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream("data.csv");
+        if (inputStream == null) return;
+
+        Reader reader = new InputStreamReader(inputStream);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
 
         Iterable<CSVRecord> records = CSVFormat.DEFAULT
