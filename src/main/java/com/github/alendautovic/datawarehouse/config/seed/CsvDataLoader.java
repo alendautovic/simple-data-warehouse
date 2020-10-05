@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.Reader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -28,8 +29,15 @@ public class CsvDataLoader implements ApplicationRunner {
         this.dailyStatisticsRepository = dailyStatisticsRepository;
     }
 
+    /**
+     * Method that loads daily statistics data from csv file, only once. Automatically called after application start (see {@link ApplicationRunner}).
+     * Csv file is named "data.csv" and is located in resources folder
+     *
+     * @param args {@link ApplicationArguments}
+     * @throws IOException in case of I/O error while reading data from csv file
+     */
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) throws IOException {
 
         if (dailyStatisticsRepository.count() != 0) {
             return;
@@ -37,7 +45,6 @@ public class CsvDataLoader implements ApplicationRunner {
 
         File file = new ClassPathResource("data.csv").getFile();
         Reader reader = new FileReader(file);
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
 
         Iterable<CSVRecord> records = CSVFormat.DEFAULT

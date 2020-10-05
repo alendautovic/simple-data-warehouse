@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -21,8 +22,15 @@ public class DataWarehouseQueryController {
         this.dailyStatisticsService = dailyStatisticsService;
     }
 
+    /**
+     * API for querying Data Warehouse in a dynamic and flexible way
+     *
+     * @param queryRequest {@link DataWarehouseQuery} DTO representing query logic to be applied on the Data Warehouse.
+     *                     Automatically mapped from request body of HTTP POST request, parsed as JSON string.
+     * @return List of {@link DataWarehouseQueryResponse} objects. Automatically mapped to HTTP response body, serialized in JSON format.
+     */
     @PostMapping("/query")
-    public List<DataWarehouseQueryResponse> queryDataWarehouse(@RequestBody DataWarehouseQuery queryRequest) {
+    public List<DataWarehouseQueryResponse> queryDataWarehouse(@Valid @RequestBody DataWarehouseQuery queryRequest) {
         return dailyStatisticsService.queryDataWarehouse(queryRequest);
     }
 

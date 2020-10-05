@@ -1,13 +1,13 @@
 package com.github.alendautovic.datawarehouse.web.rest.dto.response;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 public class DataWarehouseQueryResponse {
     private String datasource;
     private String campaign;
     private LocalDate date;
-    private Set<MetricResult> metricResults;
+    private List<MetricResult> metricResults;
 
     public String getDatasource() {
         return datasource;
@@ -33,11 +33,11 @@ public class DataWarehouseQueryResponse {
         this.date = date;
     }
 
-    public Set<MetricResult> getMetricResults() {
+    public List<MetricResult> getMetricResults() {
         return metricResults;
     }
 
-    public void setMetricResults(Set<MetricResult> metricResults) {
+    public void setMetricResults(List<MetricResult> metricResults) {
         this.metricResults = metricResults;
     }
 }

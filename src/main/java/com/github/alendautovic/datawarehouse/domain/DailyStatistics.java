@@ -6,6 +6,9 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Objects;
 
+/**
+ * Class representing DailyStatistics entity, mapped to daily_statistics table in database. All data from csv file is imported into in this table (see {@link com.github.alendautovic.datawarehouse.config.seed.CsvDataLoader})
+ */
 @Entity
 @Table(name = "daily_statistics")
 public class DailyStatistics {

@@ -2,15 +2,16 @@ package com.github.alendautovic.datawarehouse.web.rest.dto.request;
 
 import com.github.alendautovic.datawarehouse.service.enumeration.Dimension;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 public class DataWarehouseQuery {
 
     @NotEmpty
-    private Set<MetricQuery> metricQueries;
+    private Set<@Valid MetricQuery> metricQueries;
     private Set<Dimension> groupBy;
-    private Set<DimensionFilter> filters;
+    private Set<@Valid DimensionFilter> filters;
 
     public Set<MetricQuery> getMetricQueries() {
         return metricQueries;
